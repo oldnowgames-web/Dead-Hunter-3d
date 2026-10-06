@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Dead Hunter 3D</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="style.css"></head><body>
+<canvas id="c"></canvas>
+<div id="hud"><div id="hp"><i id="hpb"></i></div><div id="inf"></div><div id="sc"></div><div id="env"></div></div>
+<div id="hb" hidden></div>
+<div id="tip"></div><div id="ban"></div><div id="fl"></div>
+<div id="mb" hidden><div class="gh"></div><div id="zl" class="zn"></div><div id="zr" class="zn"></div><div id="jl" class="jb"><i id="kl" class="jk"></i></div><div id="jr" class="jb"><i id="kr" class="jk"></i></div><button id="bP" class="bt sm">⏸</button><button id="bV" class="bt sm">🎥</button><button id="bW" class="bt sm">🔁</button><button id="bR" class="bt">🏃</button><button id="bJ" class="bt">⬆️</button><button id="bE" class="bt" style="display:none">📦</button><button id="bA" class="bt">⚔️<small>ATAQUE</small></button></div>
+<div id="rot"><div style="font-size:64px">📱↻</div><div>Gire o celular para o modo horizontal</div></div>
+<div id="menu" class="ov"><h1>DEAD<span>HUNTER 3D</span></h1><div id="ld"><i id="bar"></i></div><button id="play" hidden>JOGAR</button><button id="fsb" class="sec">⛶ TELA CHEIA</button></div>
+<div id="tut" class="ov" hidden>
+<h2>COMO JOGAR</h2>
+<p class="obj"><b>Objetivo:</b> sobreviva o máximo que conseguir. Os zumbis chegam em <b>hordas</b> cada vez maiores — e elas vêm com o tempo, você não precisa matar todos para a próxima chegar.</p>
+<div class="tgr kbonly">
+<div class="tc"><h3>🏃 MOVER</h3>
+<div class="tr"><span class="k"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>Andar</span></div>
+<div class="tr"><span class="k"><kbd>SHIFT</kbd></span><span>Correr (segure)</span></div>
+<div class="tr"><span class="k"><kbd>C</kbd></span><span>Andar devagar (segure)</span></div>
+<div class="tr"><span class="k"><kbd>ESPAÇO</kbd></span><span>Pular</span></div></div>
+<div class="tc"><h3>⚔️ LUTAR</h3>
+<div class="tr"><span class="k"><kbd>CLIQUE</kbd></span><span>Bater com a arma ou atirar</span></div>
+<div class="tr"><span class="k"><kbd>1</kbd> … <kbd>9</kbd></span><span>Escolher a arma da barra de baixo</span></div>
+<div class="tr"><span class="k"><kbd>RODA</kbd> <kbd>Q</kbd></span><span>Passar para a próxima arma</span></div>
+<div class="tr"><span class="k"><kbd>G</kbd><kbd>Y</kbd><kbd>N</kbd><kbd>X</kbd></span><span>Gestos: acenar, sim, não, agachar</span></div></div>
+<div class="tc"><h3>🚗 USAR</h3>
+<div class="tr"><span class="k"><kbd>E</kbd></span><span>Abrir baú perto de você</span></div>
+<div class="tr"><span class="k"><kbd>E</kbd></span><span>Entrar e sair de um carro</span></div>
+<div class="tr"><span class="k"><kbd>ESPAÇO</kbd></span><span>Freio de mão (dentro do carro)</span></div>
+<div class="tr"><span class="k"></span><span>Atropele os zumbis com o carro!</span></div></div>
+<div class="tc"><h3>🎥 CÂMERA E MENU</h3>
+<div class="tr"><span class="k"><kbd>MOUSE</kbd></span><span>3ª pessoa: mirar · 1ª pessoa: olhar em volta (clique na tela para prender o mouse)</span></div>
+<div class="tr"><span class="k"><kbd>V</kbd></span><span>Trocar entre 1ª e 3ª pessoa</span></div>
+<div class="tr"><span class="k"><kbd>ESC</kbd></span><span>Pausar o jogo</span></div></div>
+</div>
+<div class="tgr mobonly"><div class="tc"><h3>🕹️ MOVER</h3><div class="tr"><span>Use o <b>direcional da esquerda</b>. Empurre pouco para andar devagar.</span></div><div class="tr"><span><b>🏃</b> liga e desliga a corrida · <b>⬆️</b> pula.</span></div></div><div class="tc"><h3>⚔️ LUTAR</h3><div class="tr"><span><b>ATAQUE</b>: bate ou atira e mira sozinho no zumbi mais perto.</span></div><div class="tr"><span>Ou <b>arraste o dedo no lado direito</b> para mirar e atacar para qualquer lado.</span></div><div class="tr"><span><b>🔁</b> troca de arma (ou toque na arma lá em cima).</span></div></div><div class="tc"><h3>🚗 USAR</h3><div class="tr"><span>Perto de um baú ou carro aparece o botão verde: toque para abrir ou entrar/sair.</span></div><div class="tr"><span>No carro: o direcional anda e vira, <b>🛑</b> é o freio.</span></div></div><div class="tc"><h3>🎥 CÂMERA</h3><div class="tr"><span><b>🎥</b> troca entre 1ª e 3ª pessoa. Na 1ª, arraste no lado direito para olhar em volta.</span></div><div class="tr"><span><b>⏸</b> pausa o jogo.</span></div></div></div>
+<div class="tips">
+<div>🌙 <b>À noite</b> vêm mais zumbis, mas os postes acendem.</div>
+<div>🌧️ Quando <b>chove</b> a visão diminui. Fique atento!</div>
+<div>📦 Abra <b>baús</b> para ganhar vida e munição.</div>
+<div>🐶 Seu <b>pug</b> luta ao seu lado. Cuidado com o cão infectado e com o zumbi gordo.</div>
+</div>
+<button id="tutok">Continuar</button></div>
+<div id="sel" class="ov" hidden>
+<div class="lb">Escolha seu sobrevivente</div>
+<div id="selr">
+<div id="pvw"><canvas id="pv"></canvas><div id="pvh">arraste para girar</div><button class="ar" id="ar1">‹</button><button class="ar" id="ar2">›</button><div id="pvn"></div></div>
+<div id="selc"><div class="lb">Personagem</div><div id="chars" class="row"></div><div class="lb">Escolha a câmera</div><div id="cams" class="row"><button data-c="3">3ª pessoa</button><button data-c="1">1ª pessoa</button></div><button id="go">COMEÇAR</button></div>
+</div></div>
+<div id="pause" class="ov" hidden><h1>PAUSADO</h1><div id="pst"></div>
+<div class="row" style="flex-direction:column;align-items:stretch;min-width:min(320px,80vw)"><button id="pres">Continuar</button><button id="phelp" class="sec">Como jogar</button><button id="prst" class="sec">Reiniciar partida</button><button id="pmen" class="sec">Trocar personagem / câmera</button></div>
+<div class="hint" style="font:14px system-ui,sans-serif;opacity:.7">Aperte ESC para continuar</div></div>
+<div id="xh" hidden></div>
+<div id="over" class="ov" hidden><h1 style="color:var(--rd)">VOCÊ MORREU</h1><div id="res" style="font-size:26px"></div><button id="again">Jogar de novo</button></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/SkeletonUtils.js"></script>
+<script src="script.js"></script>
+
+</body></html>
