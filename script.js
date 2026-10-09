@@ -398,6 +398,7 @@ $('again').onclick=()=>{$('over').hidden=true;run=false;$('xh').hidden=true;wind
  $('prst').onclick=()=>{setPause(false);startGame(LS.ch,LS.cm);lockMouse()};
  $('pmen').onclick=()=>{paused=false;$('pause').hidden=true;run=false;$('xh').hidden=true;if(document.pointerLockElement){ENV.nolock=true;document.exitPointerLock()}window.toSel()};
  $('ld').hidden=true;$('play').hidden=false;pl.getDelta()})();
+let pfT=0,pfN=0,pfL=performance.now();
 loop();
 ;
 function stick(z,b,k,cb){const RD=56;
@@ -406,9 +407,9 @@ function stick(z,b,k,cb){const RD=56;
  const up=e=>{if(e.pointerId!==z._id)return;z._id=null;b.style.display='none';cb(0,0,false)};z.addEventListener('pointerup',up);z.addEventListener('pointercancel',up)}
 function btn(id,dn,up){const b=$(id),u=()=>{b.classList.remove('act');up&&up()};b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();try{b.setPointerCapture(e.pointerId)}catch(_){}b.classList.add('act');dn()});b.addEventListener('pointerup',u);b.addEventListener('pointercancel',u)}
 function tchReset(){['zl','zr'].forEach(i=>$(i)._id=null);['jl','jr'].forEach(i=>$(i).style.display='none');Object.assign(TCH,{mx:0,my:0,aa:null,fire:false,atk:false,jump:false,run:false});['bR','bA','bJ'].forEach(i=>$(i).classList.remove('on','act'))}
-function updMB(){const v=!!P.veh,nr=!P.dead&&(v||P.nc||P.nv);$('bE').style.display=nr?'flex':'none';$('bE').textContent=v?'🚪':P.nc?'📦':'🚗';$('bJ').textContent=v?'🛑':'⬆️';$('bW').style.display=$('bV').style.display=v?'none':'flex';
+function setIc(id,k){const b=$(id);if(b._ic===k)return;b._ic=k;b.innerHTML='<svg class="ic"><use href="#i-'+k+'"/></svg>'}
+function updMB(){const v=!!P.veh,nr=!P.dead&&(v||P.nc||P.nv);$('bE').style.display=nr?'flex':'none';setIc('bE',v?'door':P.nc?'chest':'car');setIc('bJ',v?'brake':'jump');$('bW').style.display=$('bV').style.display=v?'none':'flex';
  const on=document.querySelector('#hb .sl.on');if(on&&on!==updMB.l){updMB.l=on;const h=$('hb');h.scrollLeft=on.offsetLeft-h.clientWidth/2+on.offsetWidth/2}}
-let pfT=0,pfN=0,pfL=performance.now();
 function perf(){const n=performance.now(),d=(n-pfL)/1000;pfL=n;if(!run||paused||d>.3)return;pfT+=d;pfN++;if(pfT<1.5)return;const f=pfN/pfT;pfT=pfN=0;
  if(f<40&&DPR>.6){DPR=Math.max(.6,DPR-.2);R.setPixelRatio(DPR);rs()}else if(f<28&&sun.castShadow)sun.castShadow=false;else if(f>56&&DPR<MAXPR){DPR=Math.min(MAXPR,DPR+.1);R.setPixelRatio(DPR);rs()}}
 if(MOB){
@@ -423,10 +424,10 @@ if(MOB){
  btn('bE',()=>interact());btn('bP',()=>setPause(true));
  btn('bV',()=>{if(!run||P.dead||paused)return;if(P.veh)ban('Dentro do veículo: só 3ª pessoa');else{camMode=camMode==1?3:1;applyCam()}});
  btn('bW',()=>{if(!run||P.veh||P.dead||paused)return;const o=P.own.slice().sort((a,b)=>a-b);setW(o[(o.indexOf(P.w)+1)%o.length])});
- document.addEventListener('touchmove',e=>{if(!e.target.closest('#tut,#hb'))e.preventDefault()},{passive:false});
+ document.addEventListener('touchmove',e=>{if(!e.target.closest('.ov,#hb'))e.preventDefault()},{passive:false});
  ['gesturestart','gesturechange'].forEach(t=>document.addEventListener(t,e=>e.preventDefault()));
  const fsb=$('fsb'),fo=()=>document.fullscreenElement||document.webkitFullscreenElement,lb=()=>fsb.textContent=fo()?'SAIR DA TELA CHEIA':'⛶ TELA CHEIA';
  fsb.onclick=async()=>{const d=document.documentElement;try{if(fo())(document.exitFullscreen||document.webkitExitFullscreen).call(document);else{const f=d.requestFullscreen||d.webkitRequestFullscreen;if(!f){fsb.textContent='iPhone: Compartilhar › Adicionar à Tela de Início';setTimeout(lb,5000);return}await f.call(d,{navigationUI:'hide'});try{await screen.orientation.lock('landscape')}catch(_){}}}catch(_){}};
  document.addEventListener('fullscreenchange',lb);document.addEventListener('webkitfullscreenchange',lb);
  const po=()=>{const p=innerHeight>innerWidth;document.body.classList.toggle('port',p);if(p&&run&&!paused&&!P.dead)setPause(true)};
- addEventListener('resize',po);addEventListener('orientationchange',()=>setTimeout(()=>{rs();po()},300));po()}
+ addEventListener('resize',po);addEventListener('orientationchange',()=>{[150,400,900].forEach(t=>setTimeout(()=>{rs();po()},t))});window.visualViewport&&visualViewport.addEventListener('resize',()=>{rs();po()});po()}
